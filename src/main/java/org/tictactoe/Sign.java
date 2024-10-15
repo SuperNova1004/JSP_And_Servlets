@@ -1,2 +1,4 @@
-package org.example;public class Sign {
+package org.tictactoe;
+
+public class Sign {
 }
