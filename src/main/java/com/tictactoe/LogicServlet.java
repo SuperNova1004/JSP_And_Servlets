@@ -12,8 +12,11 @@ import java.util.List;
 
 @WebServlet(name = "LogicServlet", value = "/logic")
 public class LogicServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // Получаем текущую сессию
         HttpSession currentSession = req.getSession();
 
@@ -84,6 +87,7 @@ public class LogicServlet extends HttpServlet {
     private boolean checkWin(HttpServletResponse response, HttpSession currentSession, Field field) throws IOException {
         Sign winner = field.checkWin();
         if (Sign.CROSS == winner || Sign.NOUGHT == winner) {
+
             // Добавляем флаг, который показывает что кто-то победил
             currentSession.setAttribute("winner", winner);
 
@@ -101,14 +105,17 @@ public class LogicServlet extends HttpServlet {
     }
 
     private int getSelectedIndex(HttpServletRequest request) {
+
         String click = request.getParameter("click");
         boolean isNumeric = click.chars().allMatch(Character::isDigit);
         return isNumeric ? Integer.parseInt(click) : 0;
     }
 
     private Field extractField(HttpSession currentSession) {
+
         Object fieldAttribute = currentSession.getAttribute("field");
         if (Field.class != fieldAttribute.getClass()) {
+
             currentSession.invalidate();
             throw new RuntimeException("Session is broken, try one more time");
         }

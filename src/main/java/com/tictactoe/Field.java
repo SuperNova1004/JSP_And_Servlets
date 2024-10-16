@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Field {
+
     private final Map<Integer, Sign> field;
 
     public Field() {
+
         field = new HashMap<>();
         field.put(0, Sign.EMPTY);
         field.put(1, Sign.EMPTY);
@@ -23,10 +25,12 @@ public class Field {
     }
 
     public Map<Integer, Sign> getField() {
+
         return field;
     }
 
     public int getEmptyFieldIndex() {
+
         return field.entrySet().stream()
                 .filter(e -> e.getValue() == Sign.EMPTY)
                 .map(Map.Entry::getKey)
@@ -34,6 +38,7 @@ public class Field {
     }
 
     public List<Sign> getFieldData() {
+
         return field.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue)
@@ -41,6 +46,7 @@ public class Field {
     }
 
     public Sign checkWin() {
+
         List<List<Integer>> winPossibilities = List.of(
                 List.of(0, 1, 2),
                 List.of(3, 4, 5),
@@ -53,8 +59,10 @@ public class Field {
         );
 
         for (List<Integer> winPossibility : winPossibilities) {
+
             if (field.get(winPossibility.get(0)) == field.get(winPossibility.get(1))
                     && field.get(winPossibility.get(0)) == field.get(winPossibility.get(2))) {
+
                 return field.get(winPossibility.get(0));
             }
         }
